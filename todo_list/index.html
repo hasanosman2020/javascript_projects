@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/13e0592400.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!--Start with a section that has a form and a list-->
+    <section class="section-center">
+      <!--form-->
+      <form class="todo_form">
+        <p class="alert"></p>
+        <div class="form-control">
+          <input type="text" id="todo" placeholder="Enter to-do" />
+          <button type="submit" class="add_todo_btn">Add To-Do</button>
+        </div>
+      </form>
+      <!--list-->
+      <!--Container to hold the list and the 'clear todos' button-->
+      <div class="todolist_container">
+        <div class="todo_list">
+          <article class="todo_item">
+            <p class="title">to-do item</p>
+            <div class="btn_container">
+              <button type="button" class="edit_btn">
+                <i class="fa-duotone fa-pen-to-square"></i>
+              </button>
+              <button type="button" class="delete_btn">
+                <i class="fa-duotone fa-trash-can"></i>
+              </button>
+              <button type="button" class="clear_todos_btn">
+                Clear To-Dos
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <script src="app.js"></script>
+  </body>
+</html>
