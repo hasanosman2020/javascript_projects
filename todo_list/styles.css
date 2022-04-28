@@ -182,7 +182,7 @@ p {
         font-family: var(--ff-secondary);
         color: var(--clr-grey-5);
     }
-    .add-todo-btn {
+    .add_todo_btn {
         background: var(--clr-primary-8);
         border-color: transparent;
         flex: 0 0 5rem;
@@ -198,7 +198,7 @@ p {
         transition: var(--transition);
         font-size: 0.85rem;
     }
-    .add-todo-btn:hover {
+    .add_todo_btn:hover {
         background: var(--clr-primary-5);
         color: var(--white);
     }
@@ -223,6 +223,10 @@ p {
     .todo_item:hover {
         background: var(--clr-primary-5);
         color: var(--white);
+    }
+    img {
+        height: 20px;
+        width: 20px;
     }
 
 
