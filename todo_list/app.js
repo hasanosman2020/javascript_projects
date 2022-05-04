@@ -60,7 +60,7 @@ function addItem (e) {
     //add the attribute('idAttribute') to the element 'article'
     article.setAttributeNode(idAttribute)
 
-    //now we can add the html and set it equal to a template string. Note here that we have already set up the article so we need to copy the html code within the article element and change any hard-coded values/items in the html code being dynamic - delete the article element from index.html because everything will now be added dynamically
+    //now we can add the html and set it equal to a template string. Note here ;that we have already set up the article so we need to copy the html code within the article element and change any hard-coded values/items in the html code being dynamic - delete the article element from index.html because everything will now be added dynamically
     article.innerHTML = `
     <p class="title">${todoValue}</p>
             <div class="btn_container">
@@ -80,7 +80,7 @@ function addItem (e) {
     displayAlert('To-Do successfully added to list!', 'success')
 
     //show the todolist container
-    container.classList.add('show-container')
+    //container.classList.add('show_container')
   } else {
     //console.log('empty item')
     // OR
