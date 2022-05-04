@@ -81,6 +81,14 @@ function addItem (e) {
 
     //show the todolist container
     //container.classList.add('show_container')
+    //NOTE: including the hidden container and .show_container results in a bug
+
+    //add two more functions and initially add them as placeholders
+    //add to local storage
+    addToLocalStorage(todoId, todoValue)
+
+    //set back to default
+    setBackToDefault()
   } else {
     //console.log('empty item')
     // OR
@@ -108,3 +116,13 @@ function displayAlert (text, action) {
   }, 5000)
 }
 //we have finished dealing with the scenario where the user adds a blank todo to the list - now we turn to when the user wants to add a new item to his to-do list (see), i.e where the if condition 'value !== '' && editFlag =false
+
+//set back to default
+function setBackToDefault () {
+  console.log('set back to default')
+}
+
+/*Local Storage*/
+function addToLocalStorage (todoId, todoValue) {
+  console.log('added to local storage')
+}
