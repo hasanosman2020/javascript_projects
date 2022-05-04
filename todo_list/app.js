@@ -38,13 +38,49 @@ function addItem (e) {
 
   //the user can do one of three things before clicking on 'Add To-Do' button: 1. enter a value and add it to todo list, 2. edit an exisiting todo item, 3. click on 'Add tO-Do' without entering anything. Adding a new item to the list means that the todoValue variable is not empty and the editFlag is false
   //the console.logs in the if..elseif..else statement below is to check that the logic is working. We are unable to check if the 'edit item' work because we first need to make the edit button functional
+  //the if, elseif and else conditions below all need to be dealt with by way of functions or otherwise in order to determine what happens and how the app will react on each event - start with the final else, then the if and lastly the elseif
   //we can shorten the below if condition like so: if(todoValue && !editFlag)
   if (todoValue !== '' && editFlag === false) {
-    console.log('add item to list')
-    //if the user is editing an item then it means that the todoValue variable is not empty but the editFlag is true
-    //we can shorten the below elseif condition like so: else if (todoValue && !editFlag)
-  } else if (todoValue !== '' && editFlag === true) {
-    console.log('edit item')
+    //console.log('add item to list');
+    //here we need to create the to-do item which appears in the to-do list and which is the value entered by the user i.e. the todoValue
+    //in index.html we see that the location for this item is within the article tag along with the edit and delete buttons - in index.html we have the todo_list followed by the todo_item. This is the item we want to create but since it is within article what we create here is the article (so that there is a reference back to the html element) and we copy and paste the html code(and we remove that html code from index.html)
+    //create the element
+    const article = document.createElement('article')
+
+    //all html elements within the article tag have a class of 'todo_item' so create such class in the js 'article' handle created above
+    article.classList.add('todo_item')
+
+    //we need to also assign a unique ID to each 'todo_item'. If the index.html had a data-set value we can use that to access the element but here we can first create the data-set attribute and create the attribute dynamically by labelling the attribute 'data-id'.
+    //add id
+    const idAttribute = document.createAttribute('data-id')
+
+    //add the value of the attribute
+    idAttribute.value = todoId
+
+    //add the attribute('idAttribute') to the element 'article'
+    article.setAttributeNode(idAttribute)
+
+    //now we can add the html and set it equal to a template string. Note here that we have already set up the article so we need to copy the html code within the article element and change any hard-coded values/items in the html code being dynamic - delete the article element from index.html because everything will now be added dynamically
+    article.innerHTML = `
+    <p class="title">${todoValue}</p>
+            <div class="btn_container">
+              <button type="button" class="edit_btn">
+                <img src="edit_todo.svg" alt="edit item" />
+              </button>
+              <button type="button" class="delete_btn">
+                <img src="delete_todo.svg" alt="delete item" />
+              </button>
+            </div>
+    `
+
+    //having set up the item, we now need to add the item to our list - we append the item to the list ('list' handle created above from the 'todo_list' html element)
+    list.appendChild(article)
+
+    //display alert
+    displayAlert('To-Do successfully added to list!', 'success')
+
+    //show the todolist container
+    container.classList.add('show-container')
   } else {
     //console.log('empty item')
     // OR
@@ -71,3 +107,4 @@ function displayAlert (text, action) {
     alert.classList.remove(`alert-${action}`)
   }, 5000)
 }
+//we have finished dealing with the scenario where the user adds a blank todo to the list - now we turn to when the user wants to add a new item to his to-do list (see), i.e where the if condition 'value !== '' && editFlag =false

@@ -15,26 +15,14 @@
         <p class="alert"></p>
         <h3>To-Do List</h3>
         <div class="form-control">
-          <input type="text" id="todo" placeholder="Enter to-do" />
+          <input type="text" id="todo" placeholder="Enter to-do" data-id="" />
           <button type="submit" class="btn add_todo_btn">Add To-Do</button>
         </div>
       </form>
       <!--list-->
       <!--Container to hold the list and the edit, delete and clear buttons-->
       <div class="todolist_container">
-        <div class="todo_list">
-          <article class="todo_item">
-            <p class="title"></p>
-            <div class="btn_container">
-              <button type="button" class="edit_btn">
-                <img src="edit_todo.svg" alt="edit item" />
-              </button>
-              <button type="button" class="delete_btn">
-                <img src="delete_todo.svg" alt="delete item" />
-              </button>
-            </div>
-          </article>
-        </div>
+        <div class="todo_list"></div>
         <!--'clear to-dos' button*-->
         <button type="button" class="clear_todos_btn">Clear To-Dos</button>
       </div>
