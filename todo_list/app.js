@@ -20,6 +20,9 @@ form.addEventListener('submit', addItem)
 
 //Now we refer to the 'Functions' section and look at the first function 'addItem(e)'
 
+//The second event listener which will be for deleting all items in the list, i.e. clearing the list, and so thed event will be the click action on the 'Clear To-Dos' button
+clearButton.addEventListener('click', clearList)
+
 /*Functions*/
 //this is the first callback function after the add todo event above and we need to include the event object because bt default when we submit a form the form will try to submit the data entered by the user to a server and we do no want this to happen so we set up the event with preventDefault().
 function addItem (e) {
@@ -116,6 +119,19 @@ function displayAlert (text, action) {
   }, 5000)
 }
 //we have finished dealing with the scenario where the user adds a blank todo to the list - now we turn to when the user wants to add a new item to his to-do list (see), i.e where the if condition 'value !== '' && editFlag =false
+
+//clear the todo list and remove all items. This function needds to asccess all the itmes in the list individually so we need to fihd the class to which all the items belong to, i.e. the class list. This is normally to be found in the index.html but since we have copied that part of the html into app.js this means that the class list is now added dynamically and it is the class list added above as 'todo_item' (fromthe line 'article.classList.add('todo_item')')
+function clearList () {
+  //console.log('list is clear')
+  const items = document.querySelectorAll('.todo_item')
+  //in order to access all of the items we have to iterate through the list of items and delete each item. We do this by using a forEach loop
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      list.removeChild(item)
+    })
+    displayAlert('Success - you have no pending to-dos!', 'success')
+  }
+}
 
 //set back to default
 function setBackToDefault () {

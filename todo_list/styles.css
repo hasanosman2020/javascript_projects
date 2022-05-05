@@ -199,6 +199,7 @@ p {
         content: var(--clr-primary-5);
         transition: var(--transition);
         font-size: 0.85rem;
+        background-color: var(--clr-primary-9)
     }
     .add_todo_btn:hover {
         background: var(--clr-green-light);
