@@ -154,7 +154,7 @@ function clearList () {
 //set back to default
 function setBackToDefault () {
   //console.log('set back to default')
-  //the aim here is to have the user input be blank after submitting a todo rather than have it stay in the box, so we would want to say:
+  //the aim here is to have the user input be blank after subm;;itting a todo rather than have it stay in the box, so we would want to say:
   todo.value = ''
 }
 
