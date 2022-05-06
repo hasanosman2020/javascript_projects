@@ -23,6 +23,14 @@ form.addEventListener('submit', addItem)
 //The second event listener which will be for deleting all items in the list, i.e. clearing the list, and so thed event will be the click action on the 'Clear To-Dos' button
 clearButton.addEventListener('click', clearList)
 
+//The edit and delete buttons also need event listeners so that they either delete the item or edit it when the user clicks on either of them. Like the list items which had the class list added dynamically, the edit and select buttons are also added dynamically and so if we try to add event listeners to either button then nothing will happen. The reason for that is because we will not have access to them since they are not there when the page loads. The clear button, for example, was also added dynamically but we always have access to it because it is there in the html when the page loads and we can therefore target it, but neither the edit or delete buttons are present and we are therefore unable to target them. The edit and select buttons are created dynamically below and it is only then that we are able to target them. To continue from here, go below where we create the article (where we copy the html code. (The code below was my initial attempt - try it and see how it fails. First we look at the html code copied from index.html to app.js and create a javascript handle from the class of each of the delete and select buttons by using the querySelector method. Then we add an event listener to that handle/variable and then write the commands for each function).
+
+//const deleteButton = article.querySelector('.delete_btn')
+//deleteButton.addEventListener('click', deleteTodoItem)
+
+//const deleteButton = document.querySelectorAll('.delete_btn')
+//deleteButton.addEventListener('click', deleteTodoItem)
+
 /*Functions*/
 //this is the first callback function after the add todo event above and we need to include the event object because bt default when we submit a form the form will try to submit the data entered by the user to a server and we do no want this to happen so we set up the event with preventDefault().
 function addItem (e) {
@@ -75,8 +83,14 @@ function addItem (e) {
               </button>
             </div>
     `
+    //Continued from above. The edit and delete buttons are children of the article and only appear when the article does so. Here is where we are able to access them and to create a javascript handle on either burron (we test this code by doing a console.log in the callback function)
+    const deleteButton = article.querySelector('.delete_btn')
+    deleteButton.addEventListener('click', deleteTodoItem)
 
-    //having set up the item, we now need to add the item to our list - we append the item to the list ('list' handle created above from the 'todo_list' html element)
+    const editButton = article.querySelector('.edit_btn')
+    editButton.addEventListener('click', editTodoItem)
+
+    //having set up the item, we now need to add the item to our list - we append the item to the list ('list' hand                        dle created above from the 'todo_list' html element)
     list.appendChild(article)
 
     //display alert
@@ -131,6 +145,10 @@ function clearList () {
     })
     displayAlert('Success - you have no pending to-dos!', 'success')
   }
+  setTimeout(function () {
+    alert.textContent = ''
+    alert.classList.remove(`alert-${action}`)
+  }, 5000)
 }
 
 //set back to default
@@ -138,6 +156,14 @@ function setBackToDefault () {
   //console.log('set back to default')
   //the aim here is to have the user input be blank after submitting a todo rather than have it stay in the box, so we would want to say:
   todo.value = ''
+}
+
+function deleteTodoItem () {
+  console.log('Item to be deleted')
+}
+
+function editTodoItem () {
+  console.log('Item to be edited.')
 }
 
 /*Local Storage*/
