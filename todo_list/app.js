@@ -86,6 +86,7 @@ function addItem (e) {
     //Continued from above. The edit and delete buttons are children of the article and only appear when the article does so. Here is where we are able to access them and to create a javascript handle on either burron (we test this code by doing a console.log in the callback function)
     const deleteButton = article.querySelector('.delete_btn')
     deleteButton.addEventListener('click', deleteTodoItem)
+    //now go to function 'deleteTodoItem'
 
     const editButton = article.querySelector('.edit_btn')
     editButton.addEventListener('click', editTodoItem)
@@ -158,15 +159,22 @@ function setBackToDefault () {
   todo.value = ''
 }
 
-function deleteTodoItem () {
-  console.log('Item to be deleted')
+function deleteTodoItem (e) {
+  console.log('Itedm to be deleted')
+  //when the user clicks on the delete button we want to have access to the item which is in the todo list. For this we need access to the parent container and we pass as a parameter an event object. The parent container of the button element is the button container but when we click on the button we do not want access to the button container but rather we want access to the todo item on the list. We have already referenced above the todo list and we can use removeChild method to delete the item. Also, we use currentTarget here because this is already set up on the button. For example, if we mistakenly use font awesome then the parent will be the button, and if we use target instead of currentTarget then we will see what we are clicking on but here the path is very specific with the parent element being the button container and the parent of that being the todo_list.
+  const element = e.currentTarget.parentElement.parentElement
+  list.removeChild(element)
+  displayAlert('Item removed', 'error')
+  setBackToDefault()
 }
 
 function editTodoItem () {
-  console.log('Item to be edited.')
+  //console.log('Item to be edited.')
 }
 
 /*Local Storage*/
 function addToLocalStorage (todoId, todoValue) {
   console.log('added to local storage')
 }
+
+function removeFromLocalStorage(todoId)
