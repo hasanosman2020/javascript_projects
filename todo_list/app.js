@@ -177,4 +177,4 @@ function addToLocalStorage (todoId, todoValue) {
   console.log('added to local storage')
 }
 
-function removeFromLocalStorage(todoId)
+function removeFromLocalStorage (todoId) {}
