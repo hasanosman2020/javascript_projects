@@ -107,7 +107,7 @@ function addItem (e) {
 
     //set back to default
     setBackToDefault()
-  } else {
+
     //console.log('empty item')
     // OR
     //alert.textContent = 'Please enter a to-do.'
@@ -115,7 +115,19 @@ function addItem (e) {
     //OR
     //instead of hard-coding the alert value we can set up a function to display the alert and which we would be able to use elsewhere in the program so see the displayAlert() function below
     //after having set the displayAlert() function we can now use it in here for when the user attempts to click on the 'Add To-Do' button without having entered a to-do
-    displayAlert('Please enter a to-do.', 'error')
+    //displayAlert('Please enter a to-do.', 'error')
+  } else if (todoValue !== '' && editFlag === true) {
+    console.log('edit item')
+    editElement.innerHTML = todoValue
+    displayAlert('Success- the todo item has been edited.', 'success')
+
+    //edit local storage - this must appear before setBackToDefault() function
+    editLocalStorage(editID, todoValue)
+
+    //see setBackToDefault() function below - this must be the last function in this code block
+    setBackToDefault()
+  } else {
+    displayAlert('To-do item cannot be blank', 'error')
   }
 }
 
@@ -157,6 +169,10 @@ function setBackToDefault () {
   //console.log('set back to default')
   //the aim here is to have the user input be blank after subm;;itting a todo rather than have it stay in the box, so we would want to say:
   todo.value = ''
+  //the additional elements below will kick into action when wer click on the edit button
+  editFlag = false
+  editID = ''
+  addButton.textContent = 'Add To-Do'
 }
 
 function deleteTodoItem (e) {
@@ -168,8 +184,28 @@ function deleteTodoItem (e) {
   setBackToDefault()
 }
 
-function editTodoItem () {
+function editTodoItem (e) {
   //console.log('Item to be edited.')
+  //two phases when editing items - making it functional and handling it when we are submitting the form (b/cf initially we check whether we are submitting the form or editing). We start like we did with deleteItem above and first thing we do is to access the todo item so copy the definition of element.
+  const element = e.currentTarget.parentElement.parentElement
+
+  //Then we set up the edit items that we createad under the comment 'edit options' above. For editElement, the current target will give me the button, the pa;rent element will give me the button container and sibling will give me the specific <p class='title'></p> copied over from the html - it is that specific value which we want to access because that will reflect what the user entry is and it is what we want to edit, so we use 'previousElementSibling'
+  editElement = e.currentTarget.parentElement.previousElementSibling
+
+  //once we have accessw to that value/title, we can set up what its value is and it will be the value of the data being inserted by the user - so instead of grabbing that value from somewhere like usual or setting it equal to an empty string we are here setting that value by using 'editElement.innerHTML'
+  //set form value
+  todo.value = editElement.innerHTML
+
+  //since we are now editing, editFlag must now equal true
+  editFlag = true
+
+  //the editId will be equal to the id of the element and we access that using the data-id (dataset.id) - this data id is each element's unique value
+  editID = element.dataset.id
+
+  //we would also want to change the value of the button from 'Add To-Do' to 'Edit To-Do'
+  addButton.textContent = 'Edit To-Do'
+
+  //now we need to deal with our edit functionality and submitting the edited item, i.e. the elseif above where the value is true and the editFlag is true. The first thing to do is to grab the value and assign it to the editElement. The 'editElement = 'e.currentTarget.parentElement.previousElementSibling' is assigned to a specific paragraph and the value was assigned to the innerHTML of editElement, so we grabbed whatever we had in that paragraph and assigned it to the form. Now we want to do the opposite and grab that value and set it back equal to the paragraph. Since that was assigned to the editElement (under comment edit options at the top), when we are actually submitting the form we say that the editElement's inner html is now equal to the value and we do that by going back up to the elseif statement and inserting 'editElement.innerHTML = value'
 }
 
 /*Local Storage*/
@@ -179,4 +215,8 @@ function addToLocalStorage (todoId, todoValue) {
 
 function removeFromLocalStorage (todoId) {
   console.log('remove from local storage')
+}
+
+function editLocalStorage (editID, todoValue) {
+  console.log('edit local storage')
 }
