@@ -209,8 +209,38 @@ function editTodoItem (e) {
 }
 
 /*Local Storage*/
-function addToLocalStorage (todoId, todoValue) {
-  console.log('added to local storage')
+//refer to mvlocalstorage.js for explanation of how local storage operates
+//the general set up is setItem, getItem, JSON.stringify(), and JSON.parse()
+//first we check whenm we are running our local storage and we see above that it is when the value is there and we are not editing - the todoId is what was passed to the item and the value is the uswer input, i.e. whatever is displayed on the screen.
+function addToLocalStorage (id, value) {
+  //console.log('added to local storage')
+  //The local storage will store an array with items and it will be equal to the object which has the element's id and value
+  //the object is usually expressed as {id:id, value:value} but ES^ introduced a shortcut where if the property and the value of the property are the same then we can shorten it to just id (or value)
+  const todoArrayItem = { id, value }
+  //then we will need to get those items - they are not there now but eventually they will be so we need to check if they are already in local storage because if not then we will need to add them
+  //the items we want to get here are the items in the todolist added by the user - we arrange them in an array and assign a variable to that array. If we console.log here for what is in the local storage, i.e. is there an item with the name of todoListItem,  it should be blank.
+  //let todoListItem = localStorage.getItem('list')
+  //console.log(todoListItem)
+  //now add an item to the todo list and check the local storage - it should be empty
+  //now set up a ternary operator where if there is an item then get the item assign that item to the variable 'todoListItem' and if there is no item, i.e. no list, then just set this up as an empty array. We are unable to use the above getItem because here we are dealing with arrays and objects so we have to replace it with
+  let todoListItem = localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : []
+
+  //"localStorage.getItem('list')" in the line above is just checking whether the item exists or not
+  //"?JSON.parse(localStorage.getItem('list')) : [ ]" - this says that if the item referred to in the line above exists then get it using JSON.parse() and if it doesn't then set my items equal to an empty array
+  //so now we can either get the array 'list' or an empty array, and we know that at this point we have an empty array
+
+  //we now add the todoArrayItem to the array todoListITem using the push method
+  todoListItem.push(todoArrayItem)
+
+  //we now have our items ready to go so we can now use setItem method using JSON.stringify() (so that if the item is not there then we set it up and if its there then we will get it back)
+  localStorage.setItem('list', JSON.stringify(todoListItem))
+  console.log(todoListItem)
+
+  //above, we finally check with console.log and with local storage in the browser - the first item we insert there will not be any items (empty array) because the JSON.parse will be equal to the emty array we already covered and the item would not have been set yet but then when we insert our second item then the localStorage.getItem ('list') won't be no anymore
+
+  //console.log('added to local storage')
 }
 
 function removeFromLocalStorage (todoId) {
