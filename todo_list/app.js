@@ -158,6 +158,8 @@ function clearList () {
     })
     displayAlert('Success - you have no pending to-dos!', 'success')
   }
+  setBackToDefault()
+  localStorage.removeItem('list')
   setTimeout(function () {
     alert.textContent = ''
     alert.classList.remove(`alert-${action}`)
@@ -263,6 +265,8 @@ function removeFromLocalStorage (todoId) {
   })
   //now in the end I will still need to set the new values which we can copy from addToLocalStorage() function above
   localStorage.setItem('list', JSON.stringify(todoListItem))
+
+  //so for the above removeFromLocalStorage() function, we first grab whatever items are already in the local storage using getLocalStorage() and assign it to a variable (in this case,the variable is 'todoListItems') -> then, we filter those items and in the callback function we can access each and every item - this will already be the local storage item -> then on that item we have the id property -> once we remove the item then I will set it in local storage
 }
 
 function editLocalStorage (editID, todoValue) {
