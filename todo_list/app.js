@@ -181,15 +181,19 @@ function setBackToDefault () {
 }
 
 function deleteTodoItem (e) {
-  console.log('Itedm to be deleted')
+  console.log('Item to be deleted')
   //when the user clicks on the delete button we want to have access to the item which is in the todo list. For this we need access to the parent container and we pass as a parameter an event object. The parent container of the button element is the button container but when we click on the button we do not want access to the button container but rather we want access to the todo item on the list. We have already referenced above the todo list and we can use removeChild method to delete the item. Also, we use currentTarget here because this is already set up on the button. For example, if we mistakenly use font awesome then the parent will be the button, and if we use target instead of currentTarget then we will see what we are clicking on but here the path is very specific with the parent element being the button container and the parent of that being the todo_list.
   const element = e.currentTarget.parentElement.parentElement
+  const id = element.dataset.id
   list.removeChild(element)
+  if (list.children.length === 0) {
+    container.classList.remove('show_container')
+  }
   displayAlert('Item removed', 'error')
   setBackToDefault()
 
   //remove from local storage
-  removeFromLocalStorage(todoId)
+  removeFromLocalStorage(id)
 }
 
 function editTodoItem (e) {
@@ -231,9 +235,12 @@ function addToLocalStorage (id, value) {
   //console.log(todoListItem)
   //now add an item to the todo list and check the local storage - it should be empty
   //now set up a ternary operator where if there is an item then get the item assign that item to the variable 'todoListItem' and if there is no item, i.e. no list, then just set this up as an empty array. We are unable to use the above getItem because here we are dealing with arrays and objects so we have to replace it with
-  let todoListItem = localStorage.getItem('list')
-    ? JSON.parse(localStorage.getItem('list'))
-    : []
+  //let todoListItem = localStorage.getItem('list')
+  //? JSON.parse(localStorage.getItem('list'))
+  //: []
+
+  //the above three single-line comments are the code that was here before we copied the right hand side to the function getLocalStorage below and made it return the result and replaced the above by simply invoking the getLocalStorage() function - this rearrangement does not affect the functionality
+  let todoListItem = getLocalStorage()
 
   //"localStorage.getItem('list')" in the line above is just checking whether the item exists or not
   //in the final code this will be "let todoListItem = getLocalStorage()" and the long-form one above will be copied below as the last function
@@ -254,20 +261,20 @@ function addToLocalStorage (id, value) {
   //for both remove and edit functions, we would still want to access whatever we got back from localStorage.getItem('list') above so we would create a function in order to handle this. The getLocalStorage() function will be copied from above and inserted  after the remove and edit functions - we do not pass any parameters to it and instead we return the result. See below for code (the functionality does not change)
 }
 
-function removeFromLocalStorage (todoId) {
+function removeFromLocalStorage (id) {
   console.log('remove from local storage')
   //we call this function when we are deleting an item with addToLocal Storage above, we want to get the items in local storage so we do the same thing as in addToLocalStorage above if we have the item we assign the variable to its value and if we don't have an item then we set our variable to an empty array. At this point we already have a list of items arranged in an array, so the todoListItems variable will be equal to the array of values that are already in local storage.
   let todoListItems = getLocalStorage()
 
   //now that we have the array we use the filter method to iterate over the array that we are getting back from 'getLocalStorage' and then I will call my callback function. I can access each item as a parameter
   todoListItems = todoListItems.filter(function (todoListItem) {
-    if (todoListItem.id !== todoID) {
+    if (todoListItem.id !== id) {
       //this says that if the item id (because this is one of the properties) that I have within the item that is coming back from local storage does not match the id that I am passing in when I'm deleting the item, then return the item. So here I'm just filtering out the values that don't match this id, and the id that actually matches to whatever I'm passing in here will be the one that will get removed.
       return todoListItem
     }
   })
   //now in the end I will still need to set the new values which we can copy from addToLocalStorage() function above
-  localStorage.setItem('list', JSON.stringify(todoListItem))
+  localStorage.setItem('list', JSON.stringify(todoListItems))
 
   //so for the above removeFromLocalStorage() function, we first grab whatever items are already in the local storage using getLocalStorage() and assign it to a variable (in this case,the variable is 'todoListItems') -> then, we filter those items and in the callback function we can access each and every item - this will already be the local storage item -> then on that item we have the id property -> once we remove the item then I will set it in local storage
 }
@@ -276,9 +283,9 @@ function editLocalStorage (editID, todoValue) {
   console.log('edit local storage')
 }
 
-/*
-function getLocalStorage() {
-  return localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
-
+/*continued from above - see paragraph before function removeFromLocalStorage(todoId)*/
+function getLocalStorage () {
+  return localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : []
 }
-dd*/
