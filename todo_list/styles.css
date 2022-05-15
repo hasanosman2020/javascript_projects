@@ -212,11 +212,13 @@ p {
     .todolist_container {
         margin-top: 2rem;
         transition: var(--transition);
-        /*visibility: hidden;*/
+        visibility: hidden;
+        
     }
-    /*.show_container {
+    
+    .show_container {
         visibility: visible;
-    }*/
+    }
     .todo_item {
         display: flex;
         align-items: center;

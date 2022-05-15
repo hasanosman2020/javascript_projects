@@ -2,7 +2,7 @@
 const alert = document.querySelector('.alert')
 const form = document.querySelector('.todo_form')
 const addButton = document.querySelector('.add_todo_btn')
-const container = document.querySelector('.todolist_ccntainer')
+const container = document.querySelector('.todolist_container')
 const list = document.querySelector('.todo_list')
 const todo = document.getElementById('todo')
 const clearButton = document.querySelector('.clear_todos_btn')
@@ -98,7 +98,8 @@ function addItem (e) {
     displayAlert('To-Do successfully added to list!', 'success')
 
     //show the todolist container
-    //container.classList.add('show_container')
+    container.classList.add('show_container')
+
     //NOTE: including the hidden container and .show_container results in a bug
 
     //add two more functions and initially add them as placeholders
@@ -158,6 +159,8 @@ function clearList () {
     })
     displayAlert('Success - you have no pending to-dos!', 'success')
   }
+  container.classList.remove('show_container')
+
   setBackToDefault()
   localStorage.removeItem('list')
   setTimeout(function () {
@@ -260,7 +263,7 @@ function removeFromLocalStorage (todoId) {
   todoListItems = todoListItems.filter(function (todoListItem) {
     if (todoListItem.id !== todoID) {
       //this says that if the item id (because this is one of the properties) that I have within the item that is coming back from local storage does not match the id that I am passing in when I'm deleting the item, then return the item. So here I'm just filtering out the values that don't match this id, and the id that actually matches to whatever I'm passing in here will be the one that will get removed.
-      return item
+      return todoListItem
     }
   })
   //now in the end I will still need to set the new values which we can copy from addToLocalStorage() function above
