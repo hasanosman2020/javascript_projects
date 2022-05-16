@@ -1,4 +1,5 @@
-/*Select  Items*/
+/******SELECT ITEMS********/
+
 const alert = document.querySelector('.alert')
 const form = document.querySelector('.todo_form')
 const addButton = document.querySelector('.add_todo_btn')
@@ -14,7 +15,8 @@ let editFlag = false
 //we use the id of an element to identify it
 let editID = ''
 
-/*Event Listeners*/
+/*******EVENT LISTENERS*********/
+
 //add todo which happens after user clicks 'Add To-Do' button. We use a shortcut here with the callback function where we write the name of the function and then add that function in the 'Functions' section below instead of referring to the callback function with 'function(e){}'
 form.addEventListener('submit', addItem)
 
@@ -31,7 +33,8 @@ clearButton.addEventListener('click', clearList)
 //const deleteButton = document.querySelectorAll('.delete_btn')
 //deleteButton.addEventListener('click', deleteTodoItem)
 
-/*Functions*/
+/******FUNCTIONS********/
+
 //this is the first callback function after the add todo event above and we need to include the event object because bt default when we submit a form the form will try to submit the data entered by the user to a server and we do no want this to happen so we set up the event with preventDefault().
 function addItem (e) {
   e.preventDefault()
@@ -220,7 +223,8 @@ function editTodoItem (e) {
   //now we need to deal with our edit functionality and submitting the edited item, i.e. the elseif above where the value is true and the editFlag is true. The first thing to do is to grab the value and assign it to the editElement. The 'editElement = 'e.currentTarget.parentElement.previousElementSibling' is assigned to a specific paragraph and the value was assigned to the innerHTML of editElement, so we grabbed whatever we had in that paragraph and assigned it to the form. Now we want to do the opposite and grab that value and set it back equal to the paragraph. Since that was assigned to the editElement (under comment edit options at the top), when we are actually submitting the form we say that the editElement's inner html is now equal to the value and we do that by going back up to the elseif statement and inserting 'editElement.innerHTML = value'
 }
 
-/*Local Storage*/
+/******LOCAL STORAGE********/
+
 //refer to mvlocalstorage.js for explanation of how local storage operates
 //the general set up is setItem, getItem, JSON.stringify(), and JSON.parse()
 //first we check whenm we are running our local storage and we see above that it is when the value is there and we are not editing - the todoId is what was passed to the item and the value is the uswer input, i.e. whatever is displayed on the screen.
@@ -279,10 +283,22 @@ function removeFromLocalStorage (id) {
   //so for the above removeFromLocalStorage() function, we first grab whatever items are already in the local storage using getLocalStorage() and assign it to a variable (in this case,the variable is 'todoListItems') -> then, we filter those items and in the callback function we can access each and every item - this will already be the local storage item -> then on that item we have the id property -> once we remove the item then I will set it in local storage
 }
 
+//edit local storage
+//the set up for editing our local storage is like the others - we let the items equal to the getLocalStorage() function which would either give us what is in our list or it would give us an empty array
 function editLocalStorage (editID, todoValue) {
-  console.log('edit local storage')
-}
+  //console.log('edit local storage')
+  let items = getLocalStorage()
 
+  //here we are passing in two values, editID and todoValue, so we scroll up the document to see where we called this and we see that we called it 1)when we called the function editTodoItem() and 2) when adding an item (first function "function addItem(e)) and the list value !== '' && editFlag = true (so when we were actually editing)here we actually called the editLocalStorage(editId, todoValue). The editID we passed here was the editId which we declared at the beginning of the document along with the other edit options and the value was the new value. What we need to do now is to get our item from the list (the one that is sitting in the local storage) and update its value and so we do need the id to access that item but we change it into my value.
+
+  items = items.map(function (item) {
+    if (item.id === editID) {
+      item.value = todoValue
+    }
+    return item
+  })
+  localStorage.setItem('list', JSON.stringify(items))
+}
 /*continued from above - see paragraph before function removeFromLocalStorage(todoId)*/
 function getLocalStorage () {
   return localStorage.getItem('list')
