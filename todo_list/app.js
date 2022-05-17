@@ -33,6 +33,9 @@ clearButton.addEventListener('click', clearList)
 //const deleteButton = document.querySelectorAll('.delete_btn')
 //deleteButton.addEventListener('click', deleteTodoItem)
 
+//set up listener for DOMContentLoaded - event DOM content
+window.addEventListener('DOMContentLoaded', setupItems)
+
 /******FUNCTIONS********/
 
 //this is the first callback function after the add todo event above and we need to include the event object because bt default when we submit a form the form will try to submit the data entered by the user to a server and we do no want this to happen so we set up the event with preventDefault().
@@ -55,26 +58,30 @@ function addItem (e) {
   //the if, elseif and else conditions below all need to be dealt with by way of functions or otherwise in order to determine what happens and how the app will react on each event - start with the final else, then the if and lastly the elseif
   //we can shorten the below if condition like so: if(todoValue && !editFlag)
   if (todoValue !== '' && editFlag === false) {
+    createListItems(todoId, todoValue)
+
     //console.log('add item to list');
     //here we need to create the to-do item which appears in the to-do list and which is the value entered by the user i.e. the todoValue
     //in index.html we see that the location for this item is within the article tag along with the edit and delete buttons - in index.html we have the todo_list followed by the todo_item. This is the item we want to create but since it is within article what we create here is the article (so that there is a reference back to the html element) and we copy and paste the html code(and we remove that html code from index.html)
-    //create the element
-    const article = document.createElement('article')
+    //create the element -
+    //[Note: code moved to createListItems() function below] const article = document.createElement('article')
 
     //all html elements within the article tag have a class of 'todo_item' so create such class in the js 'article' handle created above
-    article.classList.add('todo_item')
+    //[Note: code moved to createListItems() function below] article.classList.add('todo_item')
 
     //we need to also assign a unique ID to each 'todo_item'. If the index.html had a data-set value we can use that to access the element but here we can first create the data-set attribute and create the attribute dynamically by labelling the attribute 'data-id'.
     //add id
-    const idAttribute = document.createAttribute('data-id')
+    //[Note: code moved to createListItems() function below] const idAttribute = document.createAttribute('data-id')
 
     //add the value of the attribute
-    idAttribute.value = todoId
+    //[Note: code moved to createListItems() function below] idAttribute.value = todoId
 
     //add the attribute('idAttribute') to the element 'article'
-    article.setAttributeNode(idAttribute)
+    //[Note: code moved to createListItems() function below] article.setAttributeNode(idAttribute)
 
     //now we can add the html and set it equal to a template string. Note here ;that we have already set up the article so we need to copy the html code within the article element and change any hard-coded values/items in the html code being dynamic - delete the article element from index.html because everything will now be added dynamically
+
+    /*[Note: code moved to createListItems() function below]
     article.innerHTML = `
     <p class="title">${todoValue}</p>
             <div class="btn_container">
@@ -85,17 +92,19 @@ function addItem (e) {
                 <img src="delete_todo.svg" alt="delete item" />
               </button>
             </div>
-    `
+    `*/
     //Continued from above. The edit and delete buttons are children of the article and only appear when the article does so. Here is where we are able to access them and to create a javascript handle on either burron (we test this code by doing a console.log in the callback function)
+    /*[Note: code moved to createListItems() function below]
     const deleteButton = article.querySelector('.delete_btn')
-    deleteButton.addEventListener('click', deleteTodoItem)
+    deleteButton.addEventListener('click', deleteTodoItem)*/
     //now go to function 'deleteTodoItem'
 
+    /*[Note: code moved to createListItems() function below]
     const editButton = article.querySelector('.edit_btn')
-    editButton.addEventListener('click', editTodoItem)
+    editButton.addEventListener('click', editTodoItem)*/
 
     //having set up the item, we now need to add the item to our list - we append the item to the list ('list' hand                        dle created above from the 'todo_list' html element)
-    list.appendChild(article)
+    /*[Note: code moved to createListItems() function below]list.appendChild(article)*/
 
     //display alert
     displayAlert('To-Do successfully added to list!', 'success')
@@ -304,4 +313,45 @@ function getLocalStorage () {
   return localStorage.getItem('list')
     ? JSON.parse(localStorage.getItem('list'))
     : []
+}
+
+/*******SET-UP ITEMS********/
+//the final thing to do is to load and display the items from local storage so that if user refreshes page they will still be able to view the items that they had entered. We need to access the items from local storage once the app loads and then just display all. To set that up we need to set up an event listener for DOMContentLoaded
+function setupItems () {
+  let items = getLocalStorage()
+
+  if (items.length > 0) {
+    items.forEach(function (item) {
+      createListItems(item.id, item.value)
+    })
+    container.classList.add('show_container')
+  }
+}
+
+//here we need to check if items have any length in which case we would want to display them - we will need to iterate over them and create those new items. These items have of course already been created above when we were adding an item when value !== '' && editFlag = false. So it would make sense to create a function and take the code that was used to create those elements and pass it into the function. We call the function twice, 1)when we are submitting the form (or adding an item) and 2)when we are iterating over the items we will call my forEach and then for each and every item I will call that function. The function will be createListItems(id, value) and we copy and paste the code above which creates the elements
+function createListItems (todoId, todoValue) {
+  const article = document.createElement('article')
+  article.classList.add('todo_item')
+  const idAttribute = document.createAttribute('data-id')
+
+  idAttribute.value = todoId
+  article.setAttributeNode(idAttribute)
+  article.innerHTML = `
+    <p class="title">${todoValue}</p>
+            <div class="btn_container">
+              <button type="button" class="edit_btn">
+                <img src="edit_todo.svg" alt="edit item" />
+              </button>
+              <button type="button" class="delete_btn">
+                <img src="delete_todo.svg" alt="delete item" />
+              </button>
+            </div>
+    `
+  const deleteButton = article.querySelector('.delete_btn')
+  deleteButton.addEventListener('click', deleteTodoItem)
+
+  const editButton = article.querySelector('.edit_btn')
+  editButton.addEventListener('click', editTodoItem)
+
+  list.appendChild(article)
 }
