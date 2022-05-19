@@ -7,7 +7,6 @@ const container = document.querySelector('.todolist_container')
 const list = document.querySelector('.todo_list')
 const todo = document.getElementById('todo')
 const clearButton = document.querySelector('.clear_todos_btn')
-
 /*Edit options*/
 let editElement
 //we will not start editing immediately and only after we click on the edit button which will make the editFlag = true so the default for editFlag is false
@@ -132,7 +131,7 @@ function addItem (e) {
   } else if (todoValue !== '' && editFlag === true) {
     console.log('edit item')
     editElement.innerHTML = todoValue
-    displayAlert('Success- the todo item has been edited.', 'success')
+    displayAlert('Success-todo item has been edited!', 'success')
 
     //edit local storage - this must appear before setBackToDefault() function
     editLocalStorage(editID, todoValue)
@@ -169,7 +168,7 @@ function clearList () {
     items.forEach(function (item) {
       list.removeChild(item)
     })
-    displayAlert('Success - you have no pending to-dos!', 'success')
+    displayAlert('Success - no pending to-dos!', 'success')
   }
   container.classList.remove('show_container')
 
