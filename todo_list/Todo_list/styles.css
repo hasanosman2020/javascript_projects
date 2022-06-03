@@ -241,9 +241,6 @@ p {
         margin: 0.25rem;
         padding: none;
     }
-    .strikethrough {
-        text-decoration: line-through;
-    }
 /*
     .delete_btn,
     .edit_btn{

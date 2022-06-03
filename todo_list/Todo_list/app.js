@@ -196,8 +196,7 @@ function deleteTodoItem (e) {
   //when the user clicks on the delete button we want to have access to the item which is in the todo list. For this we need access to the parent container and we pass as a parameter an event object. The parent container of the button element is the button container but when we click on the button we do not want access to the button container but rather we want access to the todo item on the list. We have already referenced above the todo list and we can use removeChild method to delete the item. Also, we use currentTarget here because this is already set up on the button. For example, if we mistakenly use font awesome then the parent will be the button, and if we use target instead of currentTarget then we will see what we are clicking on but here the path is very specific with the parent element being the button container and the parent of that being the todo_list.
   const element = e.currentTarget.parentElement.parentElement
   const id = element.dataset.id
-  /*list.removeChild(element)*/
-  element.classList.add('strikethrough')
+  list.removeChild(element)
   if (list.children.length === 0) {
     container.classList.remove('show_container')
   }
