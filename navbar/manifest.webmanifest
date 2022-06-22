@@ -1,0 +1,4 @@
+{
+  "name": "My website",
+  "icons": [{ "src": "/logo.ico", "type": "image/ico", "sizes": "192x192" }]
+}
