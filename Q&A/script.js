@@ -3,14 +3,15 @@ console.log(questions)
 
 questions.forEach(function (question) {
   //console.log(question)
-  const buttons = question.querySelectorAll('.question_btn')
-  //console.log(buttons)
-  buttons.forEach(function (button) {
-    if (button.innerText !== '.question_content') {
-      question.remove.classList('show_text')
-    }
-  })
+  const button = question.querySelector('.question_btn')
+  //console.log(button)
   button.addEventListener('click', function () {
+    questions.forEach(function (item) {
+      //console.log(item)
+      if (item !== question) {
+        item.classList.remove('show_text')
+      }
+    })
     question.classList.toggle('show_text')
   })
 })
