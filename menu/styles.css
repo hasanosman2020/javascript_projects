@@ -21,7 +21,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     color: #333;
-    background: hsl(210, 36%, 96%);
+    background: hsl(212, 45%, 94%);
 }
 h1,
 h2,
@@ -100,16 +100,23 @@ ul {
         margin-top: 2.5rem;
     }
     @media screen and (min-width: 992px){
-        .section-center {
-            width: 65vw;
+        .section_centre {
+            width: 75vw;
+            display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 1.5rem;
+
+        
+        margin-top: 1rem;
         }
     }
     #menu_title{
         text-align: center;
         margin-top: 1.5rem;
-        margin-bottom: 1rem;
+        
         text-decoration: underline;
     }
+    
     .menu_container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -117,14 +124,21 @@ ul {
 
         
         margin-top: 1rem;
+    
     }
+
     .image_container {
         display: block;
         margin: 0 auto;
-        max-width: 100%;
-        height: auto;
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+        border: 5px solid goldenrod;
     }
     .menu_item_name,
     .menu_item_price {
-        color: darkslateblue; 
+        color: goldenrod; 
+    }
+    .menu_item_description {
+        text-align: justify;
     }
