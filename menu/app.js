@@ -50,10 +50,12 @@ const sectionCentre = document.querySelector('.section_centre')
 
 window.addEventListener('DOMContentLoaded', function () {
   //console.log('shake and bake')
+  displayMenuItems(menu)
 
-  let menuItems = menu.map(function (item) {
-    //console.log(item)
-    return `<article class='menu_item'>
+  function displayMenuItems (menuItems) {
+    menuItems = menuItems.map(function (item) {
+      //console.log(item)
+      return `<article class='menu_item'>
   <img class='image_container' src=${item.img} />
   <header class='menu_item_info'>
     <h4 class='menu_item_name'>${item.title}</h4>
@@ -65,8 +67,9 @@ window.addEventListener('DOMContentLoaded', function () {
   </p>
 </article>
 `
-  })
-  console.log(menuItems)
-  menuItems = menuItems.join('')
-  sectionCentre.innerHTML = menuItems
+    })
+    console.log(menuItems)
+    menuItems = menuItems.join('')
+    sectionCentre.innerHTML = menuItems
+  }
 })
