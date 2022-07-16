@@ -2,7 +2,7 @@ const menu = [
   {
     id: 1,
     title: 'the full english',
-    category: 'all-day',
+    category: 'breakfast',
     price: 9.99,
     img: './images/full_english.jpg',
     desc:
@@ -11,7 +11,7 @@ const menu = [
   {
     id: 2,
     title: 'american',
-    category: 'all-day',
+    category: 'all',
     price: 11.99,
     img: './images/american.jpeg',
     desc:
@@ -20,18 +20,18 @@ const menu = [
   {
     id: 3,
     title: 'creamy mushroom',
-    category: 'all-day',
+    category: 'lunch',
     price: 10.99,
-    img: './images/chicken_mushroom.jpeg',
+    img: './images/chicken_mushroom.jpg',
     desc:
       "Three pancakes stuffed with thinly sliced succulent chicken breast, chestnut mushrooms and coated with our own Islington's creme fraische garlic butter sauce and Dijon mustard. Served with a generous helping of creme fraiche."
   },
   {
     id: 4,
-    title: 'eggs florentine',
-    category: 'all-day',
+    title: 'eggs benedict',
+    category: 'all',
     price: 10.99,
-    img: './images/eggs_benedict.jpeg',
+    img: './images/eggs_benedict.jpg',
     desc:
       'Three pancakes filled with creamed spinach with cheese and honey-glazed ham, topped with baby spinach, homemade Hollondaise sauce and sunny side up eggs.'
   },
@@ -47,15 +47,38 @@ const menu = [
 ]
 
 const sectionCentre = document.querySelector('.section_centre')
+const filterButtons = document.querySelectorAll('.filter_button')
 
+//load menu items
 window.addEventListener('DOMContentLoaded', function () {
   //console.log('shake and bake')
   displayMenuItems(menu)
+})
 
-  function displayMenuItems (menuItems) {
-    menuItems = menuItems.map(function (item) {
-      //console.log(item)
-      return `<article class='menu_item'>
+//filter items
+filterButtons.forEach(function (button) {
+  button.addEventListener('click', function (e) {
+    //console.log(e.currentTarget.dataset.id
+    const category = e.currentTarget.dataset.id
+    const menuCategory = menu.filter(function (menuItem) {
+      //console.log(menuItem.category)
+      if (menuItem.category === category) {
+        return menuItem
+      }
+    })
+    //console.log(menuCategory)
+    if (category === 'all') {
+      displayMenuItems(menu)
+    } else {
+      displayMenuItems(menuCategory)
+    }
+  })
+})
+
+function displayMenuItems (menuItems) {
+  menuItems = menuItems.map(function (item) {
+    //console.log(item)
+    return `<article class='menu_item'>
   <img class='image_container' src=${item.img} />
   <header class='menu_item_info'>
     <h4 class='menu_item_name'>${item.title}</h4>
@@ -67,9 +90,8 @@ window.addEventListener('DOMContentLoaded', function () {
   </p>
 </article>
 `
-    })
-    console.log(menuItems)
-    menuItems = menuItems.join('')
-    sectionCentre.innerHTML = menuItems
-  }
-})
+  })
+  console.log(menuItems)
+  menuItems = menuItems.join('')
+  sectionCentre.innerHTML = menuItems
+}
