@@ -11,7 +11,7 @@ const menu = [
   {
     id: 2,
     title: 'american',
-    category: 'all',
+    category: 'breakfast',
     price: 11.99,
     img: './images/american.jpeg',
     desc:
@@ -29,7 +29,7 @@ const menu = [
   {
     id: 4,
     title: 'eggs benedict',
-    category: 'all',
+    category: 'breakfast',
     price: 10.99,
     img: './images/eggs_benedict.jpg',
     desc:
@@ -43,6 +43,15 @@ const menu = [
     img: './images/banana_caramel.jpg',
     desc:
       'Perfect for those with a sweet tooth! Sliced banana tossed with warm bourbon caramel sauce and served with a ramekin of fresh vanilla cream. '
+  },
+  {
+    id: 6,
+    title: 'New Mexico',
+    category: 'lunch',
+    price: 11.99,
+    img: './images/new_mexico.jpeg',
+    desc:
+      'Combination of chicken, jalapeno peppers, pepperoni, spring onions, meatballs and cheese, topped with salsa and sour cream and sprinkled with crushed nachos'
   }
 ]
 
