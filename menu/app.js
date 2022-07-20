@@ -62,6 +62,18 @@ const filterButtons = document.querySelectorAll('.filter_button')
 window.addEventListener('DOMContentLoaded', function () {
   //console.log('shake and bake')
   displayMenuItems(menu)
+  //const categories = menu.map(function (item) {
+  //return item.category
+  const categories = menu.reduce(
+    function (categoriesValues, currentCategory) {
+      if (!categoriesValues.includes(currentCategory.category)) {
+        categoriesValues.push(currentCategory.category)
+      }
+      return categoriesValues
+    },
+    ['all']
+  )
+  console.log(categories)
 })
 
 //filter items
