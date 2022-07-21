@@ -56,44 +56,15 @@ const menu = [
 ]
 
 const sectionCentre = document.querySelector('.section_centre')
-const filterButtons = document.querySelectorAll('.filter_button')
+const buttonContainer = document.querySelector('.button_container')
+
+//console.log(filterButtons)
 
 //load menu items
 window.addEventListener('DOMContentLoaded', function () {
   //console.log('shake and bake')
   displayMenuItems(menu)
-  //const categories = menu.map(function (item) {
-  //return item.category
-  const categories = menu.reduce(
-    function (categoriesValues, currentCategory) {
-      if (!categoriesValues.includes(currentCategory.category)) {
-        categoriesValues.push(currentCategory.category)
-      }
-      return categoriesValues
-    },
-    ['all']
-  )
-  console.log(categories)
-})
-
-//filter items
-filterButtons.forEach(function (button) {
-  button.addEventListener('click', function (e) {
-    //console.log(e.currentTarget.dataset.id
-    const category = e.currentTarget.dataset.id
-    const menuCategory = menu.filter(function (menuItem) {
-      //console.log(menuItem.category)
-      if (menuItem.category === category) {
-        return menuItem
-      }
-    })
-    //console.log(menuCategory)
-    if (category === 'all') {
-      displayMenuItems(menu)
-    } else {
-      displayMenuItems(menuCategory)
-    }
-  })
+  displayMenuButtons()
 })
 
 function displayMenuItems (menuItems) {
@@ -115,4 +86,49 @@ function displayMenuItems (menuItems) {
   console.log(menuItems)
   menuItems = menuItems.join('')
   sectionCentre.innerHTML = menuItems
+}
+
+function displayMenuButtons () {
+  //const categories = menu.map(function (item) {
+  //return item.category
+
+  const categories = menu.reduce(
+    function (categoriesValues, currentCategory) {
+      if (!categoriesValues.includes(currentCategory.category)) {
+        categoriesValues.push(currentCategory.category)
+      }
+      return categoriesValues
+    },
+    ['all']
+  )
+  //console.log(categories)
+
+  const categoryButtons = categories
+    .map(function (category) {
+      return `<button class='filter_button' data-id=${category}>${category}</button>`
+    })
+    .join('')
+  //console.log(categoryButtons)
+  buttonContainer.innerHTML = categoryButtons
+  const filterButtons = buttonContainer.querySelectorAll('.filter_button')
+
+  //filter items
+  filterButtons.forEach(function (button) {
+    button.addEventListener('click', function (e) {
+      //console.log(e.currentTarget.dataset.id
+      const category = e.currentTarget.dataset.id
+      const menuCategory = menu.filter(function (menuItem) {
+        //console.log(menuItem.category)
+        if (menuItem.category === category) {
+          return menuItem
+        }
+      })
+      //console.log(menuCategory)
+      if (category === 'all') {
+        displayMenuItems(menu)
+      } else {
+        displayMenuItems(menuCategory)
+      }
+    })
+  })
 }
