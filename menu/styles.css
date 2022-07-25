@@ -11,17 +11,23 @@
     text-decoration: none;
 }
 header {
+    width: 100%;
     display: flex;
+    /*position: fixed;*/
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    /*background: rgb(234, 234, 234)*/
 }
 body {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     line-height: 1.5;
     color: #333;
-    background: hsl(212, 45%, 94%);
+    background: /*hsl(212, 45%, 94%)*/;
 }
 h1,
 h2,
@@ -143,7 +149,7 @@ button:hover{
     }
     #menu_title{
         text-align: center;
-        margin-top: 1.5rem;
+        margin-top: 3.5rem;
     }
     .underline {
         height: 0.25rem;
@@ -179,3 +185,14 @@ button:hover{
     .menu_item_description {
         text-align: justify;
     }
+    
+    .logo {
+   /* width: 100%;
+    display: flex;*/
+    position: fixed;
+    margin-top: 0.5rem;
+    /*align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: rgb(234, 234, 234);*/
+}
