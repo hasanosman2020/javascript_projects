@@ -170,3 +170,13 @@ main {
   background: var(--clr-primary-5);
   color: var(--clr-primary-1);
 }
+
+.btn_tab.active {
+    background: white;
+}
+.content{
+    display: none;
+}
+.content.active{
+    display: block;
+}
