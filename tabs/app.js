@@ -1,6 +1,6 @@
 const tabInfoContainer = document.querySelector('.about')
-const buttons = document.querySelector('.btn_tab')
-const info = document.querySelector('content')
+const buttons = document.querySelectorAll('.btn_tab')
+const articles = document.querySelectorAll('.content')
 
 //Add event listener to parent container re bubbling
 tabInfoContainer.addEventListener('click', function (e) {
@@ -9,7 +9,13 @@ tabInfoContainer.addEventListener('click', function (e) {
   if (id) {
     buttons.forEach(function (button) {
       button.classList.remove('active')
-      e.target.classList.add('active')
     })
+    e.target.classList.add('active')
+    //hide other articles
+    articles.forEach(function (article) {
+      article.classList.remove('active')
+    })
+    const element = document.getElementById(id)
+    element.classList.add('active')
   }
 })
