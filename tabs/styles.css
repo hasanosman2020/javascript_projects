@@ -71,7 +71,7 @@ body {
   background: var(--clr-grey-10);
   color: var(--clr-grey-1);
   line-height: 1.5;
-  font-size: 0.875rem;
+  font-size: 100%;
 }
 ul {
   list-style-type: none;
@@ -109,6 +109,7 @@ h4 {
   font-size: 0.875rem;
 }
 p {
+  font-size: 0.75rem;
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
@@ -257,4 +258,11 @@ About
 }
 .content.active {
   display: block;
+}
+
+#history p {
+  columns: 2 auto;
+}
+th {
+  text-decoration: underline;
 }
