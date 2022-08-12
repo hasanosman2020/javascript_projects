@@ -66,12 +66,15 @@ Global Styles
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  font-size: 62.5%;
+}
 body {
   font-family: var(--ff-secondary);
   background: var(--clr-grey-10);
   color: var(--clr-grey-1);
   line-height: 1.5;
-  font-size: 100%;
+  font-size: 1.6rem;
 }
 ul {
   list-style-type: none;
@@ -260,9 +263,6 @@ About
   display: block;
 }
 
-#history p {
-  columns: 2 auto;
-}
 th {
   text-decoration: underline;
 }
