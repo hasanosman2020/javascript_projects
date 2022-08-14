@@ -24,6 +24,8 @@ The course consists of 30 javascript projects. It is an excellent course and I a
 
 9. Tabs. The 'About' section where we have an image and some information contained under different tabs. Each tab contains different content and such content is revealed when the user clicks on the corresonding tab. 
 
+10. ToDo List. A todo app where the user enters an i tem in an input box to create a list of tasks. The user has the abitlity to create, edit, and delete any of the items, or to clear the list altogether. The app uses local storage so the information is saved as per the user's last update of it in the event of the user exiting the browser.
+
 
 
 
