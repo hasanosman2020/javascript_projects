@@ -92,27 +92,29 @@ p {
     line-height: 1;
   }
 }
-button {
+button,
+.btn {
   text-transform: uppercase;
   background: transparent;
   color: black;
-  padding: 0.375rem 0.75rem;
+  padding: 0.1rem;
   letter-spacing: 0.25rem;
   display: inline-block;
   transition: all 0.3s linear;
   font-size: 0.875rem;
-  border: 2px solid black;
+  border: 2px solid goldenrod;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
+  border-radius: 0.1rem;
 }
-button:hover {
+button:hover,
+.btn:hover{
   color: white;
-  background: black;
+  background: goldenrod;
 }
 .btn_white {
   color: white;
-  border-color: white;
+  border-color: goldenrod;
   border-radius: 0;
   padding: 0.5rem 1rem;
 }
@@ -122,8 +124,8 @@ button:hover {
 
 /*navbar*/
 nav {
-    background: white;
-    padding: 1rem 1.5rem;
+    background: whitesmoke;
+    padding: 1rem;
 }
 .nav_header {
     display: flex;
@@ -138,19 +140,25 @@ nav {
     transition: all 0.3ws linear;
     cursor: pointer;
 }
-nav_toggle:hover {
+.nav_toggle:hover {
     color: white;
+    border-color: goldenrod;
 }
 .logo {
-    height: 20px;
+    height: 35px;
 }
 .links_container {
     height: 0;
     overflow: hiddden;
     transition: all 0.3s linear;
+    
 }
+.show_links {
+        height: 120px;
+        
+    }
 .links a {
-    background: white;
+    background: transparent;
     color: goldenrod;
     font-size: 1.1rem;
     text-transform: capitalize;
@@ -159,15 +167,57 @@ nav_toggle:hover {
     transition: all 0.3s linear;
     font-weight: bold;
     padding: 0.75rem 0;
+    
 }
 .links a:hover {
     color: grey;
 }
-
+@media screen and (min-width: 800px){
+    nav {
+        background: transparent;
+    }
+    .nav_centre {
+        width: 90vw;
+        max-width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav_header {
+        padding: 0;
+    }
+    .nav_toggle {
+        display: none;
+    }
+    .links_container {
+        height: auto !important;
+    }
+    
+    .links {
+        display: flex;
+    }
+    .links a {
+        background: transparent;
+        color: white;
+        font-size: 1.1rem;
+        text-transform: capitalize;
+        letter-spacing: 0.25rem;
+        display: block;
+        transition: all 0.3s linear;
+        margin: 0 1rem;
+        font-weight: bold;
+        padding: 0;
+    }
+    .links a:hover {
+        color: white;
+    }
+    
+} 
 /*hero*/
 header {
     min-height: 100vh;
-    background: linear-gradient(rgba(63, 208, 212, 0.5), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(rgba(247, 245, 228, 0.5), rgba(112, 98, 2, 0.7)), url(./images/scroll_hero-bcg.jpeg) center/cover no-repeat;
 }
 .banner {
     min-height: 100vh;
