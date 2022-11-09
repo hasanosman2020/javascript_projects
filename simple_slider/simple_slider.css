@@ -1,4 +1,4 @@
-```css
+
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
   
@@ -239,7 +239,6 @@ background: black;
         position: relative;
         border-radius: 0.5rem;
         overflow: hidden;
-
         margin-top: 4rem;
     }
      .slider{
@@ -259,13 +258,29 @@ background: black;
     }
     .slider h1 {
         font-size: 5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
+    /*
     .slider:nth-child(1) h1 {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    
+    .slider:nth-child(3){
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/img2_tulips_res (1).jpg') center/cover no-repeat;
+    }
+    .waterpaint_img {
+        border-radius: 50%;
+        width: 6rem;
+        height: 6rem;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+    }*/
     .button_container {
         display: flex;
         justify-content: center;
@@ -287,7 +302,7 @@ background: black;
             height: 65vh;
         }
     }
-
+/*
     .slider:nth-child(1){
         left: 0;
     }
@@ -304,5 +319,6 @@ background: black;
         left: 400%;
     }
     .slider{
-        transform: translateX(0%);
+        transform: translateX(-200%);
     }
+    */
