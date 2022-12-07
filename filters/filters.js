@@ -48,8 +48,26 @@ const displayButtons = () => {
   //console.log(buttons)
   companies.innerHTML = buttons
     .map(company => {
-      return `<button class="comapny_button" data-id=${company}>${company}</button>`
+      return `<button class="company_button" data-id=${company}>${company}</button>`
     })
     .join('')
 }
 displayButtons()
+
+/* Filter by Company */
+companies.addEventListener('click', e => {
+  //console.log(e.target)
+  const el = e.target
+  if (el.classList.contains('company_button')) {
+    if (el.dataset.id === 'all') {
+      filteredProducts = [...products]
+    } else {
+      filteredProducts = products.filter(product => {
+        return product.company === el.dataset.id
+      })
+    }
+    searchInput.value = ''
+
+    displayProducts()
+  }
+})
