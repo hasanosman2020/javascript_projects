@@ -39,6 +39,7 @@ box-sizing: border-box;
 --green-light: hsl(119, 78%, 55%);
 --green-dark: hsl(119, 81%, 29%)
 --clr-bcg: hsl(0, 0%, 96%);
+--grey-hover: hsl(0, 0%, 89%);
 /*other vars*/
 --small-text: 0.7em;
 --clr-text: var(--blue-100);
@@ -81,7 +82,7 @@ box-sizing: border-box;
 
 html {
 
-/*font-size: 62.5%;*/
+font-size: 62.5%;
 scroll-behavior: smooth;
 
 }
@@ -90,7 +91,7 @@ body {
 
 font-family: 'Roboto', sans-serif;
 
-font-size: var(--fs-700);
+font-size: var(--fs-400);
 
 font-weight: bold;
 
@@ -222,7 +223,7 @@ margin: 0.5rem 0;
 padding: 0.25rem;
 text-transform: capitalize;
 
-background-color: var(--grey-100);
+background-color: var(--clr-bcg);
 
 color: var(--clr-text);
 
@@ -236,7 +237,7 @@ transition: var(--transition);
 
 font-size: var(--fs-300);
 
-border-color: var(--main-200);
+border: solid 1px var(--main-300);
 
 cursor: pointer;
 
@@ -248,12 +249,25 @@ border-radius: var(--border-radius);
 
 button:hover {
 
-color: var(--blue-200);
+color: var(--clr-text);
 
-background: var(--grey-200);
+background: white;
 
-border-color: var(--main-300);
+border: solid 2px var(--main-100);
 
+}
+
+img,
+picture {
+max-width: 100%;
+display: block;
+}
+
+input,
+button,
+textarea,
+select {
+font: inherit;
 }
 
 .products {
@@ -272,7 +286,7 @@ border-color: var(--main-300);
 
 .search_input {
   padding: 0.5rem;
-  background-color: var(--grey-100);
+  background-color: white;
   border-radius: var(--border-radius);
   border-color: var(--main-100);
   letter-spacing: var(--letter-spacing);
@@ -285,10 +299,12 @@ border-color: var(--main-300);
 .product_img {
     border-radius: var(--border-radius);
     height: 15rem;
+    
 }
 .product footer {
     padding: 0.75rem 0;
     text-align: center;
+    
 }
 .product_name {
   margin-bottom: 0.25rem;
@@ -296,13 +312,18 @@ border-color: var(--main-300);
   letter-spacing: var(--letter-spacing);
   color: var(--blue-200);
   font-weight: bolder;
+  font-size: var(--fs-400);
+  
 }
-.product-price {
+.product_price {
   margin-bottom: 0;
   color: var(--blue-200);
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: var(--letter-spacing);
+  font-size: var(--fs-400);
+  
+  
 }
 @media screen and (min-width: 768px) {
   .products {
