@@ -39,3 +39,17 @@ form.addEventListener('keyup', () => {
   })
   displayProducts()
 })
+
+/*Display Company Buttons*/
+const companies = document.querySelector('.companies')
+
+const displayButtons = () => {
+  const buttons = ['all', ...new Set(products.map(product => product.company))]
+  //console.log(buttons)
+  companies.innerHTML = buttons
+    .map(company => {
+      return `<button class="comapny_button" data-id=${company}>${company}</button>`
+    })
+    .join('')
+}
+displayButtons()
