@@ -402,3 +402,8 @@ scroll-behavior: auto !important;
 }
 .loading div { box-sizing: content-box; }
 
+
+.product_loading{
+  margin: 2rem auto;
+  color: blue;
+}
