@@ -211,11 +211,11 @@ p {
   box-shadow: var(--dark-shadow);
 }
 
-.user-title {
+.user_title {
   font-size: 18px;
   margin-bottom: 0;
 }
-.user-value {
+.user_value {
   color: var(--clr-grey-1);
   font-size: 28px;
 }
@@ -227,6 +227,7 @@ p {
 .icon {
   background: transparent;
   border: transparent;
+  padding: 2rem;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--clr-grey-5);

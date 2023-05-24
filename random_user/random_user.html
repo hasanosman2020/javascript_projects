@@ -5,14 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random User</title>
-    <script src="https://kit.fontawesome.com/13e0592400.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/304357e058.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="random_user.css">
 </head>
 <body>
     <div class="block bcg_black"></div>
     <div class="block">
         <div class="container">
-            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="random user">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="random user" class="user_image">
+            <p class="user_title">My name is</p>
+            <p class="user_value">John Smith</p>
+            <div class="values_list">
+                <!-- single icon -->
+                <button class="icon active" data-label="name"><span class="fa-solid fa-user"></span></button>
+                <!-- end of single icon -->
+<!-- single icon -->
+<button class="icon" data-label="email"><span class="fa-solid fa-envelope"></span></button>
+<!-- end of single icon -->
+<!-- single icon -->
+<button class="icon" data-label="age"><span class="fa-solid fa-calendar-days"></span></button>
+<!-- end of single icon -->
+<!-- single icon -->
+<button class="icon" data-label="phone"><span class="fa-solid fa-phone"></span></button>
+<!-- end of single icon -->
+<!-- single icon -->
+<button class="icon" data-label="street"><span class="fa-solid fa-map"></span></button>
+<!-- end of single icon -->
+<!-- single icon -->
+<button class="icon" data-label="password"><span class="fa-solid fa-key"></span></button>
+<!-- end of single icon -->
+            </div>
+            <button class="btn" type="button">random user</button>
         </div>
     </div>
     
