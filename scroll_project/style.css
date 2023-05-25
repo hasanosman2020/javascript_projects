@@ -127,6 +127,28 @@ nav {
     background: whitesmoke;
     padding: 1rem;
 }
+.fixed_navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 5px15px rgba(0, 0, 0, 0.2);
+    }
+    .fixed_navbar .links a {
+        color: white;
+    }
+    .fixed_navbar .links a:hover{
+        color: darkgrey;
+}
+.fixed_navbar .links_container {
+    /*display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1170px;
+    margin: 0 auto;*/
+    height: auto !important;
+}
 .nav_header {
     display: flex;
     align-items: center;
@@ -153,9 +175,29 @@ nav {
     transition: all 0.3s linear;
     
 }
-.show_links {
-        height: 120px;
+.top_link {
+    font-size: 3.25rem;
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    background: goldenrod;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 0.5rem;
+    color: white;
+    animation: bounce 2s ease-in-out infinite;
+    visibility: hidden;
+    z-index: -100;
+}
+.show_link{
+        visibility: visible;
+        z-index: 100;
         
+    }
+    .show-links{
+        height: 200px;
     }
 .links a {
     background: transparent;
@@ -167,6 +209,7 @@ nav {
     transition: all 0.3s linear;
     font-weight: bold;
     padding: 0.75rem 0;
+    z-index: -50;
     
 }
 .links a:hover {
@@ -190,15 +233,15 @@ nav {
     .nav_toggle {
         display: none;
     }
-    .links_container {
+    /*.links_container {
         height: auto !important;
-    }
+    }*/
     
     .links {
         display: flex;
     }
     .links a {
-        background: transparent;
+        background: goldenrod;
         color: white;
         font-size: 1.1rem;
         text-transform: capitalize;
@@ -207,7 +250,9 @@ nav {
         transition: all 0.3s linear;
         margin: 0 1rem;
         font-weight: bold;
-        padding: 0;
+        padding: 0.1rem;
+        border-radius: 0.2rem;
+        border: white solid 1px;
     }
     .links a:hover {
         color: white;
@@ -264,22 +309,7 @@ footer p {
     letter-spacing: 0.1rem;
     margin-bottom: 0;
 }
-.top_link {
-    font-size: 3.25rem;
-    position: fixed;
-    bottom: 3rem;
-    right: 3rem;
-    background: goldenrod;
-    width: 2rem;
-    height: 2rem;
-    display: grid;
-    place-items: center;
-    border-radius: 0.5rem;
-    color: white;
-    animation: bounce 2s ease-in-out infinite;
-    /*visibility: hidden;*/
-    z-index: -100;
-}
+
 @keyframes bounce {
     0% {
         transform: scale(1);
