@@ -243,9 +243,8 @@ p {
   margin: 0 auto;
   margin-top: 1.5rem;
 }
-.active {
- color: var(--clr-primary-5);
-}
+
+
 @media screen and (min-width: 800px) {
   .user-value {
     font-size: 38px;
