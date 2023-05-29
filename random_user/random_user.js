@@ -1,10 +1,11 @@
 import get from './utils/getElement.js'
 import getUser from './utils/fetchUser.js'
+import displayUser from './utils/displayUser.js'
 
-const img = get('.user_image')
+/*const img = get('.user_image')
 //console.log(img)
 const title = get('.user_title')
-const value = get('.user_value')
+const value = get('.user_value')*/
 const btn = get('.btn')
 const btns = [...document.querySelectorAll('.icon')]
 //console.log(btns)
@@ -14,7 +15,8 @@ const btns = [...document.querySelectorAll('.icon')]
   /*or alternatively we can use the syntax:*/
 const showUser = async () => {
   const person = await getUser()
-  console.log(person)
+  //console.log(person)
+  displayUser(person)
 }
 //console.log('Hello World')
 
